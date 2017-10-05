@@ -1,0 +1,12 @@
+kernel=zImage
+ramdisk=boot.img-ramdisk
+dt=dt.img
+page_size=2048
+kernel_size=5901304
+ramdisk_size=1055031
+dtb_size=2199552
+base_addr=0x00000000
+kernel_offset=0x00008000
+ramdisk_offset=0x02900000
+tags_offset=0x02700000
+cmd_line="console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive"
