@@ -1,0 +1,38 @@
+ui_print(" ");
+ui_print("-----------------------------------------");
+ui_print("            _      _ ");
+ui_print(" /_  _  -/  _/ -/ /_/");
+ui_print("/_/ /_/ / ._/  / /_/ ");
+ui_print("YuYikernel Kernel");
+ui_print("Update, Edit, Build By bo1318");
+ui_print("Please visit my blog[bennkyou.tk] to get more infomaiton about N9009`s ROM");
+ui_print("If you want to use the kernel in your roms please let me know!");
+ui_print("Email:bo1318@163.com");
+ui_print("-----------------------------------------");
+ui_print(" ");
+show_progress(0.100000, 0);
+run_program("/sbin/busybox", "mount", "/system");
+run_program("/sbin/busybox", "mount", "/data");
+run_program("/sbin/busybox", "mount", "/cache");
+
+show_progress(0.200000, 0);
+ui_print(" Instaling boot.img  ...");
+package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
+
+ui_print(" Instaling needed files  ...");
+show_progress(0.500000, 0);
+package_extract_dir("system", "/system");
+set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
+set_perm(0, 0, 0755, "/system/bin/lpm");
+set_perm(0, 0, 0777, "/system/etc/init.d/00swapon");
+set_perm(0, 0, 0777, "/system/etc/init.d/01CPU_Optimizer");
+
+show_progress(0.700000, 0);
+ui_print(" Unmounting partitions ...");
+ui_print("-----------------------------------------");
+unmount("/system");
+unmount("/data");
+unmount("/cache");
+ui_print(" ");
+show_progress(0.900000, 0);
+
